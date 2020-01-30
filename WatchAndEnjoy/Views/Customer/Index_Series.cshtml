@@ -1,0 +1,57 @@
+﻿@model PagedList.IPagedList<WatchAndEnjoy.Models.Series>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index_Series";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Movies</h2>
+
+@using (Html.BeginForm("Index_Series", "Customer", FormMethod.Get))
+{
+    <p>
+        Search Name: @Html.TextBox("Search_Data", ViewBag.FilterValue as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr class="success">
+        <th>
+            @Html.ActionLink("Name", "Index_Series", new { SortingOrder = ViewBag.SortingByName, Filter_Value = ViewBag.FilterValue })
+        </th>
+        <th>
+            @Html.ActionLink("Genre", "Index_Series", new { SortingOrder = ViewBag.SortingByGenre, Filter_Value = ViewBag.FilterValue })
+        </th>
+        <th>
+            @Html.ActionLink("Rating", "Index_Series", new { SortingOrder = ViewBag.SortingByRating, Filter_Value = ViewBag.FilterValue })
+        </th>
+        <th>
+            @Html.ActionLink("Price", "Index_Series", new { SortingOrder = ViewBag.SortingByPrice, Filter_Value = ViewBag.FilterValue })
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details_Series", new { id = item.Id })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
+    }
+</table>
+<div class="pagination">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, Page_No => Url.Action("Index_Series",
+    new { Page_No, SortingOrder = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue }))
+</div>

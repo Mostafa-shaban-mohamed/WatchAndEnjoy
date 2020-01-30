@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WatchAndEnjoyDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Animes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReleaseYear" Type="int" Nullable="false" />
+          <Property Name="No.ofSeasons" Type="int" Nullable="false" />
+          <Property Name="No.ofEps" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="float" />
+          <Property Name="Cast" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="float" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReleaseYear" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="float" Nullable="false" />
+          <Property Name="Cast" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReleaseYear" Type="int" Nullable="false" />
+          <Property Name="No.ofSeasons" Type="int" Nullable="false" />
+          <Property Name="No.ofEps" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="float" />
+          <Property Name="Cast" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="float" />
+        </EntityType>
+        <EntityContainer Name="WatchAndEnjoyDbModelStoreContainer">
+          <EntitySet Name="Animes" EntityType="Self.Animes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Series" EntityType="Self.Series" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WatchAndEnjoyDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Anime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReleaseYear" Type="Int32" Nullable="false" />
+          <Property Name="No_ofSeasons" Type="Int32" Nullable="false" />
+          <Property Name="No_ofEps" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Double" />
+          <Property Name="Cast" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Movy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReleaseYear" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Double" Nullable="false" />
+          <Property Name="Cast" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReleaseYear" Type="Int32" Nullable="false" />
+          <Property Name="No_ofSeasons" Type="Int32" Nullable="false" />
+          <Property Name="No_ofEps" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Double" />
+          <Property Name="Cast" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="WatchAndEnjoyDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animes" EntityType="Self.Anime" />
+          <EntitySet Name="Movies" EntityType="Self.Movy" />
+          <EntitySet Name="Series" EntityType="Self.Series" />
+          <EntitySet Name="Customers" EntityType="WatchAndEnjoyDbModel.Customer" />
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WatchAndEnjoyDbModelStoreContainer" CdmEntityContainer="WatchAndEnjoyDbEntities">
+          <EntitySetMapping Name="Animes">
+            <EntityTypeMapping TypeName="WatchAndEnjoyDbModel.Anime">
+              <MappingFragment StoreEntitySet="Animes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="ReleaseYear" ColumnName="ReleaseYear" />
+                <ScalarProperty Name="No_ofSeasons" ColumnName="No.ofSeasons" />
+                <ScalarProperty Name="No_ofEps" ColumnName="No.ofEps" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Cast" ColumnName="Cast" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="WatchAndEnjoyDbModel.Movy">
+              <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="ReleaseYear" ColumnName="ReleaseYear" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Cast" ColumnName="Cast" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Series">
+            <EntityTypeMapping TypeName="WatchAndEnjoyDbModel.Series">
+              <MappingFragment StoreEntitySet="Series">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="ReleaseYear" ColumnName="ReleaseYear" />
+                <ScalarProperty Name="No_ofSeasons" ColumnName="No.ofSeasons" />
+                <ScalarProperty Name="No_ofEps" ColumnName="No.ofEps" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Cast" ColumnName="Cast" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="WatchAndEnjoyDbModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

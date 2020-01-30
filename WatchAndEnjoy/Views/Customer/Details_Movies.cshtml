@@ -1,0 +1,64 @@
+﻿@model WatchAndEnjoy.Models.Movy
+
+@{
+    ViewBag.Title = "Details_Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 style="color:lawngreen">@Model.Name</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="color:white">
+            @Html.DisplayNameFor(model => model.Name):
+        </dt>
+
+        <dd style="color:white">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt style="color:white">
+            @Html.DisplayNameFor(model => model.Genre):
+        </dt>
+
+        <dd style="color:white">
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt style="color:white">
+            @Html.DisplayNameFor(model => model.ReleaseYear):
+        </dt>
+
+        <dd style="color:white">
+            @Html.DisplayFor(model => model.ReleaseYear)
+        </dd>
+
+        <dt style="color:white">
+            @Html.DisplayNameFor(model => model.Rating):
+        </dt>
+
+        <dd style="color:white">
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt style="color:white">
+            @Html.DisplayNameFor(model => model.Cast):
+        </dt>
+
+        <dd style="color:white">
+            @Html.DisplayFor(model => model.Cast)
+        </dd>
+
+        <dt style="color:white">
+            @Html.DisplayNameFor(model => model.Price):
+        </dt>
+
+        <dd style="color:white">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index_Movies")
+</p>

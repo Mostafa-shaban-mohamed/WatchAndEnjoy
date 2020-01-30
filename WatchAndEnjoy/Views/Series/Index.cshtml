@@ -1,0 +1,128 @@
+﻿@model IEnumerable<WatchAndEnjoy.Models.Series>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Series</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.TextBox("Search")  <!-- Search box  -->
+        <button type="submit" class="btn btn-default">Search</button>
+    </p>
+}
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-success">Create</a>
+</p>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.No_ofSeasons)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Name, "Edit", new { id = item.Id })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.No_ofSeasons)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            <a href="javascript:void(0);" class="anchorDelete" data-id="@item.Id">Delete</a>
+        </td>
+    </tr>
+}
+</table>
+<!---------------------------------------------------- Modal Part ------------------------------------------------------------->
+<div id='myModal' class='modal'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+<!--------------------------------------------------- Paging Part --------------------------------------------------------------->
+<ul class="pagination">
+    @if (ViewBag.Page > 0)
+    {
+        <li><a href="@Url.Action("Index", new { page = ViewBag.Page - 1 })"> &laquo; Prev</a></li>
+    }
+    @for (int inmp = 0; inmp <= ViewBag.MaxPage; inmp++)
+    {
+        if (inmp == ViewBag.Page)
+        {
+            <li class="active"><a href="@Url.Action("Index", new { page = inmp })">@(inmp + 1)</a></li>
+        }
+        else
+        {
+            <li><a href="@Url.Action("Index", new { page = inmp })">@(inmp + 1)</a></li>
+        }
+    }
+    @if (ViewBag.Page < ViewBag.MaxPage)
+    {
+        <li><a href="@Url.Action("Index", new { page = ViewBag.Page + 1 })"> Next &raquo;</a></li>
+    }
+</ul>
+<!-------------------------------------------- Scripts (JQuery Part) --------------------------------------------------------->
+@section Scripts {
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+        <!-------- Autocomplete of search box-->
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#Search').autocomplete({
+            source: '/Series/getSerie'
+        });
+    });
+        // Delete Modal using JQuery AJAX
+    var deleteURL = '/Series/Delete';
+    $(function () {
+        $(".anchorDelete").click(function () {
+            debugger;
+            var $buttonClicked = $(this);
+            var id = $buttonClicked.attr('data-id');
+            var options = { "backdrop": "static", keyboard: true };
+            $.ajax({
+                type: "GET",
+                url: deleteURL,
+                contentType: "application/json; charset=utf-8",
+                data: { "Id": id },
+                datatype: "json",
+                success: function (data) {
+                    debugger;
+                    $('#myModalContent').html(data);
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                }
+            });
+        });
+        $("#closbtn").click(function () {
+            $('#myModal').modal('hide');
+        });
+    });
+    </script>
+}
